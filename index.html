@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./aframe-master.min.js"></script>
+  <script src="./aframe-mouse-cursor-component.min.js"></script>
+  <script src="./aframe-drag-look-controls-component.min.js"></script>
+  <script src="./aframe-look-at-component.min.js"></script>
+  <title>Edinburgh VR</title>
+</head>
+
+<body>
+  <a-scene>
+    <a-entity>
+      <a-camera drag-look-controls mouse-cursor>
+        <a-cursor></a-cursor>
+      </a-camera>
+    </a-entity>
+
+    <a-assets>
+      <img id="tag" src="./assets/tag.png">
+    </a-assets>
+
+    <a-sky src="http://onnvtdb54.bkt.clouddn.com/vrimage.jpeg"></a-sky>
+    <!--<a-image id="disneyTag" class="clickable" src="#disney" position="3 2 -5" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="1号舞者" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0 "></a-text class="text-clicked">
+    </a-image>
+
+    <a-image id="chinaTag" class="clickable" src="#disney" position="-4 2 -5" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="2号舞者" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0"></a-text class="text-clicked">
+    </a-image>
+
+    <a-image id="chinaTag" class="clickable" src="#disney" position="3 -1 2" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="0号" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0"></a-text class="text-clicked">
+    </a-image>
+
+    <a-image id="chinaTag" class="clickable" src="#disney" position="5 1 3" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="0号" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0"></a-text class="text-clicked">
+    </a-image>
+
+    <a-image id="chinaTag" class="clickable" src="#disney" position="-8 2.2 1" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="3号舞者" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0"></a-text class="text-clicked">
+    </a-image>
+
+    <a-image id="chinaTag" class="clickable" src="#disney" position="-0.5 2.2 5" width="0.5" height="0.5" look-at="[camera]">
+      <a-text class="text-clicked" value="4号舞者" font="./chinese.fnt" font-image="./chinese.png" position="0.3 0 0"></a-text class="text-clicked">
+    </a-image>-->
+
+    <a-circle color="#FFF" radius="0.16" position="-11 3 5" shader="flat" look-at="[camera]">
+      <a-circle color="#FFF" radius="0.32" shader="flat" scale="0.5 0.5 0.5">
+        <a-animation attribute="scale" fill="forwards" easing="ease-in-out" to="1.1 1.1 1.1" repeat="indefinite"></a-animation>
+        <a-animation attribute="opacity" fill="forwards" easing="ease-in-out" from="1" to="0" repeat="indefinite"></a-animation>
+      </a-circle>
+      <a-image id="edinburgh" src="#tag" width="3" height="1" position="2 0 0"></a-image>
+      <a-text id="edinburgh_text" value="Edinburgh" position="1.2 0 0" scale="2 2 2"></a-text>
+    </a-circle>
+
+    <!--<a-circle color="#FFF" radius="0.08" position="-1 -2 2" shader="flat" look-at="[camera]">
+      <a-circle color="#FFF" radius="0.16" shader="flat" scale="0.5 0.5 0.5">
+        <a-animation attribute="scale" fill="forwards" easing="ease-in-out" to="1.1 1.1 1.1" repeat="indefinite"></a-animation>
+        <a-animation attribute="opacity" fill="forwards" easing="ease-in-out" from="1" to="0" repeat="indefinite"></a-animation>
+      </a-circle>
+      <a-image src="#tag" width="1.5" height="0.5" position="1 0 0"></a-image>
+      <a-text value="Hello VR" position="0.7 0 0"></a-text>
+    </a-circle>-->
+
+  </a-scene>
+
+  <script>
+    var chinaEl = document.querySelectorAll('#edinburgh');
+    var edinburgh_text = document.querySelector('#edinburgh_text')
+    chinaEl.forEach(function (element) {
+      element.addEventListener('mouseenter', function () {
+        edinburgh_text.setAttribute('color', 'red');
+      });
+      element.addEventListener('mouseleave', function () {
+        edinburgh_text.setAttribute('color', '#FFF');
+      });
+
+      element.addEventListener('click', function () {
+        window.location.href = 'http://wap.yeahstation.com/edinburgh/';
+      });
+    }, this);
+
+    var scene = document.querySelector('a-scene');
+    var camera = document.querySelector('a-camera');
+    var ratio = window.devicePixelRatio;
+    window.addEventListener('orientationchange', function () {
+      setTimeout(function () {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        scene.renderer.setSize(width, height, true);
+        scene.resize();
+      }, 600);
+    });
+  </script>
+
+</body>
+
+</html>
